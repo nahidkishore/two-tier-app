@@ -1,4 +1,5 @@
--e MYSQL_DATABASE=mydb -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD="admin" 
+
+
 # Flask App with MySQL Docker Setup
 
 This is a simple Flask app that interacts with a MySQL database. The app allows users to submit messages, which are then stored in the database and displayed on the frontend.
@@ -99,6 +100,11 @@ ii) Backend container
 docker run -d --name flaskapp -v mysql-data:/var/lib/mysql -v ./message.sql:/docker-entrypoint-initdb.d/message.sql --network=twotier -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=admin -e MYSQL_DB=mydb -p 5000:5000 flaskapp:latest
 ```
 
+
+correct Commands: 
+docker run -d -p 5000:5000 --network=two-tier-net -e MYSQL_HOST=mysql -e MYSQL_DB=myDb -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin  --name=flask-app flask-app:latest
+
+ docker run -d -p 3306:3306 --network=two-tier-net -e MYSQL_DATABASE=myDb -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin -e MYSQL_ROOT_PASSWORD=admin --name mysql mysql:5.7
 ## Notes
 
 - Make sure to replace placeholders (e.g., `your_username`, `your_password`, `your_database`) with your actual MySQL configuration.
